@@ -31,7 +31,8 @@ class Account(val name: String, var balance: Int) {
 
 class MandaliExampleUnitTest {
 
-    private var threadSafetyChecker = ThreadSafetyAnalyzer(this.javaClass)
+
+    private val threadSafetyChecker = ThreadSafetyAnalyzer(this)
 
     @Test
     fun `example of deadlock`() {

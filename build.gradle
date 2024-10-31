@@ -14,7 +14,7 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 
-    implementation 'io.mandali:mandali:1.0.4-SNAPSHOT' // Please
+    implementation 'io.mandali:mandali:1.0.6-SNAPSHOT' // Please
 }
 
 test {
