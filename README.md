@@ -1,6 +1,6 @@
 # Mandali - ThreadSafetyAnalyzer
 
-**Mandali** is a Java library designed to detect potential thread safety issues within Java classes. The name **Mandali** is inspired by the Indonesian words "Man" (safe) and "Dali" (controlled), symbolizing **safety under control**. This library helps identify the use of collections that may not be thread-safe in multi-threaded environments and automatically detects deadlocks when running.
+**Mandali** is a Java library designed to detect potential thread safety issues within Java classes. The name **Mandali** is inspired by the Indonesian words "Man = Aman" (safe) and "Dali = terkenDali" (controlled), symbolizing **safety under control**. This library helps identify the use of collections that may not be thread-safe in multi-threaded environments and automatically detects deadlocks when running.
 
 
 ## Features
@@ -42,12 +42,43 @@ dependencies {
 ## Usage
 
 1. **Initialize the Class**: Create an instance of `ThreadSafetyAnalyzer` with the class you want to analyze.
+   
+   ```Kotlin
+   val threadSafetyChecker = ThreadSafetyAnalyzer(this)
+   ```
 2. **Run Analysis**: Call the `start()` method to initiate analysis on the specified class.
+   ```Kotlin
+   threadSafetyChecker.start()
+   ```
+3. Or simply call `detectDeadlock()` if you only want to **detect deadlocks**.
 
-### Example Usage
+   ```Kotlin
+   threadSafetyChecker.detectDeadlock()
+   ```
+
+### Example Usage in Unit Test
 
 ```kotlin
-private var threadSafetyChecker = ThreadSafetyAnalyzer(this.javaClass)
+private val threadSafetyChecker = ThreadSafetyAnalyzer(this)
+
+val list = ArrayList<Int>()
+
+@Test
+fun `example thread-unsafe using HashMap`() {
+    val map = HashMap<Int, Int>()
+
+    val threads = List(10) { index ->
+        thread {
+            for (i in 0 until 1000) {
+                map[i] = index
+            }
+        }
+    }
+
+    threads.forEach { it.join() }
+
+    threadSafetyChecker.start()
+}
 
 @Test
 fun `example of deadlock`() {
@@ -70,40 +101,14 @@ fun `example of deadlock`() {
         account3.transfer(account1, 1000)
     }.join(500)
 
-    threadSafetyChecker.start()
-}
-
-val list = ArrayList<Int>()
-
-@Test
-fun `example thread-unsafe using HashMap`() {
-    val map = HashMap<Int, Int>()
-
-    val threads = List(10) { index ->
-        thread {
-            for (i in 0 until 1000) {
-                map[i] = index
-            }
-        }
-    }
-
-    threads.forEach { it.join() }
-    threadSafetyChecker.start()
+    threadSafetyChecker.detectDeadlock()
 }
 ```
 
 ### Sample Output
 
 The library will display warnings and thread-safe usage suggestions for identified unsafe objects, such as:
-```plaintext
-[Mandali-ThreadSafetyAnalyzer]: Found HashMap on (MyClass.java:12)
-[Mandali-ThreadSafetyAnalyzer]: Consider using ConcurrentHashMap or Collections.synchronizedMap(new HashMap<>())
-```
-
-If a deadlock is detected, detailed information is displayed:
-```plaintext
-[Mandali-ThreadSafetyAnalyzer]: Deadlock detected: [id:14, name:Thread-2, owner:Thread-1]
-```
+<img width="100%" src="https://github.com/hangga/example-of-mandali/blob/main/Screenshot%202024-10-31%20at%2023.07.47.png?raw=true"/>
 
 ## API
 
