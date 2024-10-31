@@ -56,7 +56,7 @@ dependencies {
    threadSafetyChecker.detectDeadlock()
    ```
 
-### Example Usage
+### Example Usage in Unit Test
 
 ```kotlin
 private val threadSafetyChecker = ThreadSafetyAnalyzer(this)
