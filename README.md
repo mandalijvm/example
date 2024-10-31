@@ -49,6 +49,25 @@ dependencies {
 ```kotlin
 private var threadSafetyChecker = ThreadSafetyAnalyzer(this)
 
+val list = ArrayList<Int>()
+
+@Test
+fun `example thread-unsafe using HashMap`() {
+    val map = HashMap<Int, Int>()
+
+    val threads = List(10) { index ->
+        thread {
+            for (i in 0 until 1000) {
+                map[i] = index
+            }
+        }
+    }
+
+    threads.forEach { it.join() }
+
+    threadSafetyChecker.start()
+}
+
 @Test
 fun `example of deadlock`() {
     val account1 = Account("Hangga", 1000)
@@ -71,24 +90,6 @@ fun `example of deadlock`() {
     }.join(500)
 
     threadSafetyChecker.detectDeadlock()
-}
-
-val list = ArrayList<Int>()
-
-@Test
-fun `example thread-unsafe using HashMap`() {
-    val map = HashMap<Int, Int>()
-
-    val threads = List(10) { index ->
-        thread {
-            for (i in 0 until 1000) {
-                map[i] = index
-            }
-        }
-    }
-
-    threads.forEach { it.join() }
-    threadSafetyChecker.start()
 }
 ```
 
