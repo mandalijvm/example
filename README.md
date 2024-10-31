@@ -1,4 +1,3 @@
-```markdown
 # Mandali - ThreadSafetyAnalyzer
 
 ThreadSafetyAnalyzer is a Java library designed to detect potential thread safety issues within Java classes. This library helps identify the use of collections that may not be thread-safe in multi-threaded environments and automatically detects deadlocks when running.
