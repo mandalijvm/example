@@ -70,7 +70,7 @@ fun `example of deadlock`() {
         account3.transfer(account1, 1000)
     }.join(500)
 
-    threadSafetyChecker.start()
+    threadSafetyChecker.detectDeadlock()
 }
 
 val list = ArrayList<Int>()
