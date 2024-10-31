@@ -1,6 +1,12 @@
 # Mandali - ThreadSafetyAnalyzer
 
-**Mandali** is a Java library designed to detect potential thread safety issues within Java classes. The name **Mandali** is inspired by the Indonesian words "Man = Aman" (safe) and "Dali = terkenDali" (controlled), symbolizing **safety under control**. This library helps identify the use of collections that may not be thread-safe in multi-threaded environments and automatically detects deadlocks when running.
+**Mandali** is a Java library designed to detect potential thread safety issues within Java classes. 
+
+The name **Mandali** is inspired by the Indonesian words "Man = Aman" (safe) and "Dali = terkenDali" (controlled), symbolizing **safety under control**. 
+
+This library helps identify the use of collections that may not be thread-safe in multi-threaded environments and automatically detects deadlocks when running.
+
+Note: **This is not to guarantee thread safety. It just helps reduce potential thread safety issues**.
 
 
 ## Features
