@@ -1,0 +1,25 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '2.0.20'
+}
+
+group = 'io.mandali.example'
+version = '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven{url 'https://repo.repsy.io/mvn/hangga/repo'}
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation 'io.mandali:mandali:1.0.4-SNAPSHOT' // Please
+}
+
+test {
+    useJUnitPlatform()
+}
+kotlin {
+    jvmToolchain(21)
+}
