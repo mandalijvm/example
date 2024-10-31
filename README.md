@@ -42,12 +42,24 @@ dependencies {
 ## Usage
 
 1. **Initialize the Class**: Create an instance of `ThreadSafetyAnalyzer` with the class you want to analyze.
+   
+   ```Kotlin
+   val threadSafetyChecker = ThreadSafetyAnalyzer(this)
+   ```
 2. **Run Analysis**: Call the `start()` method to initiate analysis on the specified class.
+   ```Kotlin
+   threadSafetyChecker.start()
+   ```
+3. Or simply call `detectDeadlock()` if you only want to **detect deadlocks**.
+
+   ```Kotlin
+   threadSafetyChecker.detectDeadlock()
+   ```
 
 ### Example Usage
 
 ```kotlin
-private var threadSafetyChecker = ThreadSafetyAnalyzer(this)
+private val threadSafetyChecker = ThreadSafetyAnalyzer(this)
 
 val list = ArrayList<Int>()
 
