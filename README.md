@@ -95,15 +95,7 @@ fun `example thread-unsafe using HashMap`() {
 ### Sample Output
 
 The library will display warnings and thread-safe usage suggestions for identified unsafe objects, such as:
-```plaintext
-[Mandali-ThreadSafetyAnalyzer]: Found HashMap on (MyClass.java:12)
-[Mandali-ThreadSafetyAnalyzer]: Consider using ConcurrentHashMap or Collections.synchronizedMap(new HashMap<>())
-```
-
-If a deadlock is detected, detailed information is displayed:
-```plaintext
-[Mandali-ThreadSafetyAnalyzer]: Deadlock detected: [id:14, name:Thread-2, owner:Thread-1]
-```
+<img width="100%" src="https://github.com/hangga/example-of-mandali/blob/main/Screenshot%202024-10-31%20at%2023.07.47.png?raw=true"/>
 
 ## API
 
