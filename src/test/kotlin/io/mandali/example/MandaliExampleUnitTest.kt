@@ -31,7 +31,6 @@ class Account(val name: String, var balance: Int) {
 
 class MandaliExampleUnitTest {
 
-
     private val threadSafetyChecker = ThreadSafetyAnalyzer(this)
 
     @Test

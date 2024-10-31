@@ -40,7 +40,7 @@ dependencies {
     <dependency>
         <groupId>io.mandali</groupId>
         <artifactId>mandali</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.0.6-SNAPSHOT</version>
     </dependency>
 </dependencies>
 ```
