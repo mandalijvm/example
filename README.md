@@ -10,8 +10,34 @@
 - **Deadlock Detection**: Automatically detects deadlocks in the system and displays detailed information about the locked threads.
 
 ## Installation
+### In Gradle
 
-This library is currently closed-source. For installation and access, please contact the development team or refer to internal documentation.
+```groovy
+repositories {
+    maven { url 'https://repo.repsy.io/mvn/hangga/repo' }
+}
+
+dependencies {
+    implementation 'io.mandali:mandali:1.0.4-SNAPSHOT'
+}
+```
+### In Maven
+```xml
+<repositories>
+    <repository>
+        <id>mandali-repo</id>
+        <url>https://repo.repsy.io/mvn/hangga/repo</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>io.mandali</groupId>
+        <artifactId>mandali</artifactId>
+        <version>1.0.4-SNAPSHOT</version>
+    </dependency>
+</dependencies>
+```
 
 ## Usage
 
