@@ -47,7 +47,7 @@ dependencies {
 ### Example Usage
 
 ```kotlin
-private var threadSafetyChecker = ThreadSafetyAnalyzer(this.javaClass)
+private var threadSafetyChecker = ThreadSafetyAnalyzer(this)
 
 @Test
 fun `example of deadlock`() {
