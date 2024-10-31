@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'io.mandali:mandali:1.0.4-SNAPSHOT'
+    implementation 'io.mandali:mandali:1.0.6-SNAPSHOT'
 }
 ```
 ### In Maven
