@@ -1,6 +1,8 @@
 package io.mandali.example
 
-import io.mandali.ThreadSafetyAnalyzer
+import io.mandali.Mandali
+import io.mandali.RunMandali
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import java.lang.Thread.sleep
 import kotlin.concurrent.thread
@@ -29,9 +31,8 @@ class Account(val name: String, var balance: Int) {
     }
 }
 
+@RunMandali(showDate = true, detectDeadlock = true)
 class MandaliExampleUnitTest {
-
-    private val threadSafetyChecker = ThreadSafetyAnalyzer(this)
 
     @Test
     fun `example of deadlock`() {
@@ -54,7 +55,7 @@ class MandaliExampleUnitTest {
             account3.transfer(account1, 1000)
         }.join(500)
 
-        threadSafetyChecker.start()
+//        Mandali(this).start()
     }
 
     val list = ArrayList<Int>()
@@ -72,6 +73,10 @@ class MandaliExampleUnitTest {
         }
 
         threads.forEach { it.join() }
-        threadSafetyChecker.start()
+    }
+
+    @AfterEach
+    fun `analyze thread`() {
+        Mandali(this).start()
     }
 }

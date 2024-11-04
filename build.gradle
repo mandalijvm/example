@@ -3,7 +3,6 @@ plugins {
 }
 
 group = 'io.mandali.example'
-version = '1.0.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -14,7 +13,7 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 
-    implementation 'io.mandali:mandali:1.0.6-SNAPSHOT' // Please
+    implementation 'io.mandali:mandali:1.0.10-SNAPSHOT' // Please
 }
 
 test {
