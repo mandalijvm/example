@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group = 'io.mandali.example'
+
+repositories {
+    mavenCentral()
+    maven{url 'https://repo.repsy.io/mvn/hangga/repo'}
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'io.mandali:mandali:1.0.10-SNAPSHOT' // Please
+}
+
+test {
+    useJUnitPlatform()
+}
