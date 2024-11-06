@@ -6,7 +6,7 @@ import org.junit.jupiter.api.RepeatedTest;
 import io.mandali.Mandali;
 import io.mandali.RunMandali;
 
-@RunMandali(showDate = true, detectDeadlock = true)
+@RunMandali(detectDeadlock = false)
 public class StringBuilderVsStringBufferUnitTest {
 
     private static final int ITERATIONS = 1000000;
