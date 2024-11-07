@@ -5,34 +5,34 @@ import org.junit.jupiter.api.RepeatedTest;
 
 public class StabilityUnitTest {
 
+    void append(Appendable appendable, String string) {
+        try {
+            appendable.append(string);
+        } catch (Exception e) {
+            System.out.println("Exception caught: " + e.getMessage());
+            System.out.println(appendable.getClass().getTypeName());
+        }
+    }
+
     @RepeatedTest(100)
     public void shouldIndicateStringBuilderIsNotThreadSafe() throws InterruptedException {
         StringBuilder sharedBuilder = new StringBuilder();
 
         Thread thread1 = new Thread(() -> {
             for (int i = 0; i < 1000; i++) {
-                try {
-                    sharedBuilder.append("A");
-                } catch (Exception ignored) {
-                }
+                append(sharedBuilder, "1");
             }
         });
 
         Thread thread2 = new Thread(() -> {
             for (int i = 0; i < 1000; i++) {
-                try {
-                    sharedBuilder.append("B");
-                } catch (Exception ignored) {
-                }
+                append(sharedBuilder, "2");
             }
         });
 
         Thread thread3 = new Thread(() -> {
             for (int i = 0; i < 1000; i++) {
-                try {
-                    sharedBuilder.append("B");
-                } catch (Exception ignored) {
-                }
+                append(sharedBuilder, "A");
             }
         });
 
@@ -53,28 +53,19 @@ public class StabilityUnitTest {
 
         Thread thread1 = new Thread(() -> {
             for (int i = 0; i < 1000; i++) {
-                try {
-                    sharedBuffer.append("A");
-                } catch (Exception ignored) {
-                }
+                append(sharedBuffer, "1");
             }
         });
 
         Thread thread2 = new Thread(() -> {
             for (int i = 0; i < 1000; i++) {
-                try {
-                    sharedBuffer.append("B");
-                } catch (Exception ignored) {
-                }
+                append(sharedBuffer, "2");
             }
         });
 
         Thread thread3 = new Thread(() -> {
             for (int i = 0; i < 1000; i++) {
-                try {
-                    sharedBuffer.append("B");
-                } catch (Exception ignored) {
-                }
+                append(sharedBuffer, "3");
             }
         });
 
